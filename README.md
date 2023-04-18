@@ -9,3 +9,7 @@ else:
     
 
 must run pip install openai first
+
+### TODOs
+
+> For now, we generate output cell by cell. It does not save information as it does in ChatGPT - not sure if we can change that
