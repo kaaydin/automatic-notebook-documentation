@@ -33,5 +33,3 @@ def create_messagelist(notebook):
         messages.append(content)
 
     return messages
-
-
