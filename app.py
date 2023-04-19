@@ -16,10 +16,16 @@ def render_notebook(notebook_content):
     notebook_html, _ = html_exporter.from_notebook_node(nbconvert.reads(notebook_content, as_version=4))
     return notebook_html
 
+def convert_notebook_content_to_html(notebook_content):
+    html_exporter = nbconvert.HTMLExporter()
+    notebook_html, _ = html_exporter.from_notebook_node(nbconvert.reads(notebook_content, as_version=4))
+    return notebook_html
+
 def generate_new_notebook(upload):
     notebook = upload.read().decode("utf-8")
+    html_content = convert_notebook_content_to_html(notebook)
     col1.write("Original Notebook :camera:")
-    col1_html = notebook
+    col1_html = html_content
     components.html(col1_html, height=800)
 
     #adjusted_notebook = main(notebook)
