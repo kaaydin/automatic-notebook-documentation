@@ -19,15 +19,15 @@ def render_notebook(notebook_content):
 def generate_new_notebook(upload):
     notebook = upload.read().decode("utf-8")
     col1.write("Original Notebook :camera:")
-    col1_html = render_notebook(notebook)
+    col1_html = notebook
     components.html(col1_html, height=800)
 
-    adjusted_notebook = main(notebook)
-    col2.write("Documented Notebook :wrench:")
-    col2_html = render_notebook(adjusted_notebook)
-    components.html(col2_html, height=800)
-    st.sidebar.markdown("\n")
-    st.sidebar.download_button("Download documented notebook", adjusted_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
+    #adjusted_notebook = main(notebook)
+    #col2.write("Documented Notebook :wrench:")
+    #col2_html = render_notebook(adjusted_notebook)
+    #components.html(col2_html, height=800)
+    #st.sidebar.markdown("\n")
+    #st.sidebar.download_button("Download documented notebook", adjusted_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
