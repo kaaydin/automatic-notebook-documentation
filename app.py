@@ -1,4 +1,4 @@
-!pip install nbconvert
+pip install nbconvert
 
 import streamlit as st
 import nbconvert
