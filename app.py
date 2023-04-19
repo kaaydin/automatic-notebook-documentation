@@ -17,7 +17,7 @@ def render_notebook(notebook_content):
     return notebook_html
 
 def generate_new_notebook(upload):
-    notebook = upload.read()
+    notebook = upload.read().decode("utf-8")
     col1.write("Original Notebook :camera:")
     col1_html = render_notebook(notebook)
     components.html(col1_html, height=800)
