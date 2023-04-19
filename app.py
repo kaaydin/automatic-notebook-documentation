@@ -1,7 +1,10 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import nbconvert
-from main import main
+import nbformat
+
+from comment_generator import query_message_list
+from utils import read_notebook, create_notebook, save_notebook, write_notebook, create_messagelist
 
 st.set_page_config(layout="wide", page_title="Automatic Documentation for Jupyter Notebooks")
 
@@ -11,29 +14,31 @@ st.write(
 )
 st.sidebar.write("## Upload and download :gear:")
 
-def render_notebook(notebook_content):
-    html_exporter = nbconvert.HTMLExporter()
-    notebook_html, _ = html_exporter.from_notebook_node(nbconvert.reads(notebook_content, as_version=4))
-    return notebook_html
-
-def convert_notebook_content_to_html(notebook_content):
-    html_exporter = nbconvert.HTMLExporter()
-    notebook_html, _ = html_exporter.from_notebook_node(nbconvert.reads(notebook_content, as_version=4))
-    return notebook_html
-
 def generate_new_notebook(upload):
     notebook = upload.read().decode("utf-8")
-    html_content = convert_notebook_content_to_html(notebook)
+    
     col1.write("Original Notebook :camera:")
-    col1_html = html_content
+    col1_html = notebook
     components.html(col1_html, height=800)
 
-    #adjusted_notebook = main(notebook)
+    messages = create_messagelist(notebook)
+    nb = nbformat.v4.new_notebook()
+
+    for message in messages:
+        new_cell = nbformat.v4.new_code_cell(message)
+        nb.cells.append(new_cell)
+
+
+
+
+
+
+
     #col2.write("Documented Notebook :wrench:")
     #col2_html = render_notebook(adjusted_notebook)
     #components.html(col2_html, height=800)
-    #st.sidebar.markdown("\n")
-    #st.sidebar.download_button("Download documented notebook", adjusted_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
+    st.sidebar.markdown("\n")
+    st.sidebar.download_button("Download documented notebook", nb, "documented_notebook.ipynb", "application/x-ipynb+json")
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
