@@ -39,6 +39,8 @@ def generate_new_notebook(upload):
 
     st.write("The new Notebook!")
     st.write(nb)
+
+    nb = nb.encode('utf-8')
     #col2.write("Documented Notebook :wrench:")
     #col2_html = render_notebook(adjusted_notebook)
     #components.html(col2_html, height=800)
