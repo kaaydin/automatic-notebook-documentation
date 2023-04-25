@@ -21,11 +21,12 @@ def generate_new_notebook(upload):
     col1.write("Original Notebook :camera:")
     col1_html = notebook
     components.html(col1_html, height=800)
-    st.write("And raw")
-    st.write(notebook[:10])
+    #At this point, the notebook element is a string. We can try to turn it into a dictionairy:
     st.write("As a dictionairy")
     notebook_dict = json.loads(notebook)
-    st.write(notebook_dict["cells"][1]["source"])
+    st.write(notebook_dict.keys())
+    st.write(notebook_dict["cells"])
+    
     messages = create_messagelist(notebook)
     nb = nbformat.v4.new_notebook()
 
