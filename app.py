@@ -39,13 +39,12 @@ def generate_new_notebook(upload):
 
     st.write("The new Notebook!")
     st.write(nb)
-    st.write(type(nb))
     #nb_encoded = nb.encode('utf-8')
     #col2.write("Documented Notebook :wrench:")
     #col2_html = render_notebook(adjusted_notebook)
     #components.html(col2_html, height=800)
     #st.sidebar.markdown("\n")
-    st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
+    st.sidebar.download_button("Download documented notebook", nb, "documented_notebook.ipynb", "application/x-ipynb+json")
     
 
 col1, col2 = st.columns(2)
