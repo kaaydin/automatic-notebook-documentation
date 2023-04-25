@@ -38,15 +38,18 @@ def generate_new_notebook(upload):
         nb.cells.append(new_cell)
 
 
-
-    #col2.write("Documented Notebook :wrench:")
-    #col2_html = render_notebook(adjusted_notebook)
-    #components.html(col2_html, height=800)
-    st.sidebar.markdown("\n")
-    st.sidebar.download_button("Download documented notebook", nb, "documented_notebook.ipynb", "application/x-ipynb+json")
+    return nb
+    
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 
 if my_upload:
-    generate_new_notebook(my_upload)
+    new_notebook = generate_new_notebook(my_upload)
+
+if new_notebook:
+    #col2.write("Documented Notebook :wrench:")
+    #col2_html = render_notebook(adjusted_notebook)
+    #components.html(col2_html, height=800)
+    st.sidebar.markdown("\n")
+    st.sidebar.download_button("Download documented notebook", new_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
