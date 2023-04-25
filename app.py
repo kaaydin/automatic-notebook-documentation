@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import nbconvert
 import nbformat
+import json
 
 from comment_generator import query_message_list
 from utils import read_notebook, create_notebook, save_notebook, write_notebook, create_messagelist
@@ -22,6 +23,9 @@ def generate_new_notebook(upload):
     components.html(col1_html, height=800)
     st.write("And raw")
     st.write(notebook[:10])
+    st.write("As a dictionairy")
+    notebook_dict = json.loads(notebook)
+    st.write(notebook_dict["source"])
     messages = create_messagelist(notebook)
     nb = nbformat.v4.new_notebook()
 
