@@ -28,7 +28,9 @@ def generate_new_notebook(upload):
     st.write("And the cells")
     first_list = notebook_dict["cells"][0]["source"]
     second_list = correct_spacing(first_list)
-    st.write(" ".join(second_list))
+    st.write(first_list)
+    st.write("Second List")
+    st.write(second_list)
     st.write("Furthermore")
     st.write(notebook_dict["cells"][1]["source"])
     
