@@ -26,7 +26,7 @@ def generate_new_notebook(upload):
     notebook_dict = json.loads(notebook)
     st.write(notebook_dict.keys())
     st.write("And the cells")
-    st.write(notebook_dict["cells"])
+    st.write(notebook_dict["cells"][0]["source"])
     
     messages = create_messagelist(notebook)
     nb = nbformat.v4.new_notebook()
