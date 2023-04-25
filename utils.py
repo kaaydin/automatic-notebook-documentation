@@ -28,7 +28,7 @@ def create_messagelist(notebook):
     messages = []
 
     for i in range(len(notebook)-1):
-        content_notebook = str(notebook.cells[i]["source"])
+        content_notebook = correct_spacing(notebook["cells"][i]["source"])# previously: str(notebook.cells[i]["source"])
         content = {"role": "user", "content": f'{content_notebook}'}
         messages.append(content)
 
@@ -37,4 +37,6 @@ def create_messagelist(notebook):
 def correct_spacing(code_list):
     code_list_updates = ["\n" if x==" " else x for x in code_list]
 
-    return code_list_updates
+    full_string = " ".join(code_list_updates)
+
+    return full_string

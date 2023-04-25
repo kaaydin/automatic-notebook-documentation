@@ -24,26 +24,16 @@ def generate_new_notebook(upload):
     #At this point, the notebook element is a string. We can try to turn it into a dictionairy:
     st.write("As a dictionairy")
     notebook_dict = json.loads(notebook)
-    st.write(notebook_dict.keys())
-    st.write("And the cells")
-    first_list = notebook_dict["cells"][0]["source"]
-    second_list = correct_spacing(first_list)
-    st.write(first_list)
-    st.write("Second List")
-    st.write(" ".join(second_list))
-    st.write("Furthermore")
+    ########This is the format for accessing all of the code snippets. We can change the index in the second one to access the different
+    ######## snippets based on their index:notebook_dict["cells"][0]["source"]
     st.write(notebook_dict["cells"][1]["source"])
-    
-    messages = create_messagelist(notebook)
+    #And then pass this dictionairy to the create_messagelist. This will allows us to access all code cells
+    messages = create_messagelist(notebook_dict)
     nb = nbformat.v4.new_notebook()
 
     for message in messages:
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
-
-
-
-
 
 
 
