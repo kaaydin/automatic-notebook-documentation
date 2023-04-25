@@ -34,7 +34,7 @@ def generate_new_notebook(upload):
     nb = nbformat.v4.new_notebook()
     
     for message in messages:
-        new_cell = nbformat.v4.new_code_cell(message)
+        new_cell = nbformat.v4.new_code_cell(message["content"]) # old: new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
 
