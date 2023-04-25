@@ -21,8 +21,8 @@ def generate_new_notebook(upload):
     col1_html = notebook
     components.html(col1_html, height=800)
     #First we see what type of data we are dealing with
-    print("Data Type")
-    print(type(notebook))
+    st.write("Data Type")
+    st.write(type(notebook))
     messages = create_messagelist(notebook)
     nb = nbformat.v4.new_notebook()
 
