@@ -35,6 +35,6 @@ def create_messagelist(notebook):
     return messages
 
 def correct_spacing(code_list):
-    code_list_updates = ["\n" for line in code_list if line == " "]
+    code_list_updates = ["\n" if x==" " else x for x in code_list]
 
     return code_list_updates
