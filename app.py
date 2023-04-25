@@ -26,7 +26,6 @@ def generate_new_notebook(upload):
     notebook_dict = json.loads(notebook)
     ########This is the format for accessing all of the code snippets. We can change the index in the second one to access the different
     ######## snippets based on their index:notebook_dict["cells"][0]["source"]
-    st.write(notebook_dict["cells"][1]["source"])
     #And then pass this dictionairy to the create_messagelist. This will allows us to access all code cells
     messages = create_messagelist(notebook_dict)
     nb = nbformat.v4.new_notebook()
