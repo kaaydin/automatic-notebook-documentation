@@ -5,7 +5,7 @@ import nbformat
 import json
 
 from comment_generator import query_message_list
-from utils import read_notebook, create_notebook, save_notebook, write_notebook, create_messagelist
+from utils import read_notebook, create_notebook, save_notebook, write_notebook, create_messagelist, correct_spacing
 
 st.set_page_config(layout="wide", page_title="Automatic Documentation for Jupyter Notebooks")
 
@@ -26,7 +26,9 @@ def generate_new_notebook(upload):
     notebook_dict = json.loads(notebook)
     st.write(notebook_dict.keys())
     st.write("And the cells")
-    st.write(" ".join(notebook_dict["cells"][0]["source"]))
+    first_list = notebook_dict["cells"][0]["source"]
+    second_list = correct_spacing(first_list)
+    st.write(" ".join(second_list))
     st.write("Furthermore")
     st.write(notebook_dict["cells"][1]["source"])
     
