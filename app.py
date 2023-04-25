@@ -27,10 +27,12 @@ def generate_new_notebook(upload):
     ######## snippets based on their index:notebook_dict["cells"][0]["source"]
     #And then pass this dictionairy to the create_messagelist. This will allows us to access all code cells
     messages = create_messagelist(notebook_dict)
-    nb = nbformat.v4.new_notebook()
 
+    st.write("The format of the messages")
     st.write(messages)
 
+    nb = nbformat.v4.new_notebook()
+    
     for message in messages:
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
