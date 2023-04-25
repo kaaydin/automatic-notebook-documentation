@@ -25,6 +25,7 @@ def generate_new_notebook(upload):
     st.write("As a dictionairy")
     notebook_dict = json.loads(notebook)
     st.write(notebook_dict.keys())
+    st.write("And the cells")
     st.write(notebook_dict["cells"])
     
     messages = create_messagelist(notebook)
