@@ -28,8 +28,8 @@ def generate_new_notebook(upload):
     #And then pass this dictionairy to the create_messagelist. This will allows us to access all code cells
     messages = create_messagelist(notebook_dict)
 
-    st.write("The format of the messages")
-    st.write(messages)
+    # st.write("The format of the messages")
+    # st.write(messages)
 
     nb = nbformat.v4.new_notebook()
     
@@ -37,19 +37,17 @@ def generate_new_notebook(upload):
         new_cell = nbformat.v4.new_code_cell(message["content"]) # old: new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
-
-    return nb
+    st.write("The new Notebook!")
+    st.write(nb)
+    #col2.write("Documented Notebook :wrench:")
+    #col2_html = render_notebook(adjusted_notebook)
+    #components.html(col2_html, height=800)
+    #st.sidebar.markdown("\n")
+    #st.sidebar.download_button("Download documented notebook", nb, "documented_notebook.ipynb", "application/x-ipynb+json")
     
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 
 if my_upload:
-    new_notebook = generate_new_notebook(my_upload)
-
-if new_notebook:
-    #col2.write("Documented Notebook :wrench:")
-    #col2_html = render_notebook(adjusted_notebook)
-    #components.html(col2_html, height=800)
-    st.sidebar.markdown("\n")
-    st.sidebar.download_button("Download documented notebook", new_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
+    generate_new_notebook(my_upload)
