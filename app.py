@@ -21,7 +21,7 @@ def generate_new_notebook(upload):
     col1_html = notebook
     components.html(col1_html, height=800)
     st.write("And raw")
-    st.write(notebook)
+    st.write(notebook[:10])
     messages = create_messagelist(notebook)
     nb = nbformat.v4.new_notebook()
 
