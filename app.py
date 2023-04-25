@@ -20,9 +20,8 @@ def generate_new_notebook(upload):
     col1.write("Original Notebook :camera:")
     col1_html = notebook
     components.html(col1_html, height=800)
-    #First we see what type of data we are dealing with
-    st.write("Data Type")
-    st.write(type(notebook))
+    st.write("And raw")
+    st.write(notebook)
     messages = create_messagelist(notebook)
     nb = nbformat.v4.new_notebook()
 
