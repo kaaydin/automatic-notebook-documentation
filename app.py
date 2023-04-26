@@ -21,7 +21,7 @@ def generate_new_notebook(upload):
     # col1_html = notebook
     # components.html(col1_html, height=800)
     
-    ## At this point, the notebook element is a string. We can try to turn it into a dictionairy:
+    ## At this point, the notebook element is a string. We can try to turn it into a dictionary:
     notebook_dict = json.loads(notebook)
     
     ## Access all code snippets and ########This is the format for accessing all of the code snippets. We can change the index in the second one to access the different
@@ -43,7 +43,7 @@ def generate_new_notebook(upload):
 
     ## 
 
-    st.write("The notebook code")
+    col2.write("The notebook code")
     nb_true_quotes = json.dumps(nb, indent = 4) 
 
     
