@@ -45,7 +45,8 @@ def generate_new_notebook(upload):
     ## Create visualiation of notebook
     for message in messages:
         notebook_visualisation = message["content"]
-        col1.code(notebook_visualisation)
+        modified_string = notebook_visualisation.replace("\n ", "\n")
+        col1.code(modified_string)
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
@@ -64,7 +65,7 @@ def generate_new_notebook(upload):
 
     ## Second visualisation
     
-    split_nb = nb_true_quotes.split("source: ")
+    split_nb = nb_true_quotes.split("'source': ")
     col2.write(split_nb)
 
     
