@@ -40,7 +40,6 @@ def generate_new_notebook(upload):
     nb = nbformat.v4.new_notebook()
     
     for message in GPT_return:
-        st.write(message)
         new_cell = nbformat.v4.new_code_cell(message) # old: new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
@@ -52,6 +51,7 @@ def generate_new_notebook(upload):
     nb_true_quotes = str(nb).replace("'", '"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
     # nb_true_quotes = nb_true_quotes.replace('"training"', '\\"training\\"')
+    st.write(nb_true_quotes)
     nb_encoded = str(nb_true_quotes).encode('utf-8')
     # st.write("New encoded version")
     # st.write(nb_encoded)
