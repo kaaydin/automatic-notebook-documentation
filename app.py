@@ -55,6 +55,8 @@ def generate_new_notebook(upload):
     # nb_true_quotes = nb_true_quotes.replace('"', '\\"')
     # nb_true_quotes = nb_true_quotes.replace('"training"', '\\"training\\"')
     nb_encoded = str(nb_true_quotes).encode('utf-8')
+    st.write("New encoded version")
+    st.write(nb_encoded)
     # st.write("After change")
     # st.write(str(nb_true_quotes))
     # col2.write("Documented Notebook :wrench:")
