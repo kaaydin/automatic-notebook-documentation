@@ -36,7 +36,7 @@ def generate_new_notebook(upload):
     ## Reading notebook in JSON-based format
     notebook = upload.read().decode("utf-8")
 
-    col1.write(notebook)
+    #col1.write(notebook)
     
     #nb_formatted = nbformat.reads(notebook, as_version=nbformat.NO_CONVERT)
     #html_exporter = HTMLExporter()
@@ -50,6 +50,8 @@ def generate_new_notebook(upload):
     
     ## Turning original notebook into dictionary
     notebook_dict = json.loads(notebook)
+
+    col1.write(notebook_dict)
 
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
