@@ -4,7 +4,7 @@ import nbconvert
 import nbformat
 import json
 
-from comment_generator import query_message_list
+from comment_generator import query_message_list, run_api
 from utils import read_notebook, create_notebook, save_notebook, write_notebook, create_messagelist, correct_spacing
 
 st.set_page_config(layout="wide", page_title="Automatic Documentation for Jupyter Notebooks")
@@ -30,17 +30,22 @@ def generate_new_notebook(upload):
 
     # st.write("The format of the messages")
     # st.write(messages)
+    ###################Call to GPT-3.5 here: 
+
+    GPT_return = query_message_list(messages)
+    #######################
+
 
     nb = nbformat.v4.new_notebook()
     
-    for message in messages:
+    for message in GPT_return:
         new_cell = nbformat.v4.new_code_cell(message["content"]) # old: new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
-    st.write("The new Notebook!")
-    st.write(nb)
-    st.write("The encoded version")
-    st.write(str(nb))
+    # st.write("The new Notebook!")
+    # st.write(nb)
+    # st.write("The encoded version")
+    # st.write(str(nb))
     nb_true_quotes = str(nb).replace("'", '"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
     nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
