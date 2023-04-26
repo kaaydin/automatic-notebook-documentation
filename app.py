@@ -49,6 +49,8 @@ def generate_new_notebook(upload):
     # st.write("The encoded version")
     # st.write(str(nb))
 
+    st.write(nb["source"])
+
     nb_true_quotes = str(nb).replace("'", '"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
     # nb_true_quotes = nb_true_quotes.replace('"training"', '\\"training\\"')
