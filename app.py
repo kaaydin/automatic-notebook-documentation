@@ -49,7 +49,7 @@ def generate_new_notebook(upload):
     # st.write("The encoded version")
     # st.write(str(nb))
     st.write("The notebook code")
-    st.write(nb.keys())
+    st.write(nb["cells"])
 
     nb_true_quotes = str(nb).replace("'", '"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
