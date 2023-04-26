@@ -65,12 +65,9 @@ def generate_new_notebook(upload):
 
     ## Second visualisation
     
-    notebook_dict_edited = json.loads(nb_true_quotes)
-    messages_edited = create_messagelist(notebook_dict_edited)
-
-    for message in messages_edited:
-        notebook_visualisation = message["content"]
-        col2.code(notebook_visualisation)
+    for k in range(len(messages)):
+        relevant = nb_true_quotes["cells"][k]["source"]
+        col2.code(relevant)
     
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
