@@ -64,9 +64,8 @@ def generate_new_notebook(upload):
     nb_encoded = str(nb_true_quotes).encode('utf-8')
 
     ## Second visualisation
-    
-    split_nb = nb_true_quotes.split("'source': ")
-    col2.write(split_nb)
+    col2.code(nb_true_quotes)
+    col2.code(nb_encoded)
 
     
     ## Creating download button with the updated notebook
