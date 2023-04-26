@@ -53,16 +53,6 @@ def generate_new_notebook(upload):
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
-
-    ## Second visualisation
-    
-    notebook_visualisation_edited = ""
-
-    #for message in GPT_return:
-    #    notebook_visualisation += message
-    #    notebook_visualisation += "\n \n"
-
-    col2.write(GPT_return)
     
     ## Instantiate new notebook
     nb = nbformat.v4.new_notebook()
@@ -72,9 +62,23 @@ def generate_new_notebook(upload):
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
+
+    ## Second visualisation
+    
+    notebook_visualisation_edited = ""
+
+    #for message in GPT_return:
+    #    notebook_visualisation += message
+    #    notebook_visualisation += "\n \n"
+
+    
+
     ## HELP
     nb_true_quotes = json.dumps(nb, indent = 4) 
     nb_encoded = str(nb_true_quotes).encode('utf-8')
+
+
+    col2.write(nb_encoded)
     
     
     ## Creating download button with the updated notebook
