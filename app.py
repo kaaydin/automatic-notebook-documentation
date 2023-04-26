@@ -49,7 +49,7 @@ def generate_new_notebook(upload):
         notebook_visualisation += message["content"]
         notebook_visualisation += "\n \n"
 
-    col1.write(notebook_visualisation)
+    col1.code(notebook_visualisation)
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
