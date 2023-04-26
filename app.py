@@ -1,5 +1,3 @@
-
-
 ## Importing all relevant functions
 import streamlit as st
 import nbformat
@@ -11,7 +9,6 @@ from utils import create_messagelist
 
 ## Setting website configurations
 st.set_page_config(layout="wide", page_title="Automatic Documentation for Jupyter Notebooks")
-col1, col2 = st.columns(2)
 
 ## Writing title on website
 st.write("## Automatically generate documentation for your Jupyter Notebook")
@@ -23,19 +20,22 @@ st.write(":computer: Try uploading a Jupyter Notebook to watch how documentation
 st.sidebar.write("## Upload and download :gear:")
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 
+## Setting to columns (left: old notebook; right: new notebook)
+col1, col2 = st.columns(2)
 
 ## Function to define 
 
 def generate_new_notebook(upload):
     
-    ## Reading notebook as OTF
-    notebook = upload.read().decode("utf-8")
-
     ## Writing title for the first column 
     col1.write("Original notebook :camera:")
     
     ## Writing title for the second column
     col2.write("Updated notebook :camera:")
+
+    ## Reading notebook as OTF
+    notebook = upload.read().decode("utf-8")
+    col1.write(notebook)
 
     #col1_html = notebook
     #components.html(col1_html, height=800)
@@ -71,13 +71,3 @@ if my_upload:
     generate_new_notebook(my_upload)
 else:
     st.write("Please upload a Jupyter Notebook to view.")
-
-
-
-# col1_html = notebook
-    # components.html(col1_html, height=800)
-
-
-        ## Access all code snippets and ########This is the format for accessing all of the code snippets. We can change the index in the second one to access the different
-    ######## snippets based on their index:notebook_dict["cells"][0]["source"]
-    ## And then pass this dictionairy to the create_messagelist. This will allows us to access all code cells
