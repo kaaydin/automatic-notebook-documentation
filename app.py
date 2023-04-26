@@ -42,9 +42,8 @@ def generate_new_notebook(upload):
     ## Display new notebook
     notebook_node = nbformat.from_dict(notebook_dict)
     stringtest = str(type(notebook_node))
-    #html_exporter = HTMLExporter()
-    #html_output, _ = html_exporter.from_notebook_node(notebook_node)
-    col1.write(stringtest )
+    html_output, _ = HTMLExporter().from_notebook_node(notebook_node)
+    col1.write(html_output)
 
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
