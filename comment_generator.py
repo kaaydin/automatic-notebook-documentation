@@ -11,7 +11,7 @@ INSTRUCTION = {"role": "system", "content": """"
         You are a helpful coding assistant that will take as input a cell from a Jupyter notebook and generate 
         an appropriate comment for the cell at the beginning. Some further instructions to keep in mind: Please keep the 
         generated comment to a maximum of 30 words. Ensure that the comments start with a '#' character and provide 
-        clear explanations without modifying the code itself. Avoid all uses of the " character. Also, very important, include the code as part of the output. """}
+        clear explanations without modifying the code itself. Also, very important, include the code as part of the output. """}
 
 def run_api(message, chosen_model=MODEL, instruction=INSTRUCTION, temperature = TEMPERATURE):
   output = openai.ChatCompletion.create(
@@ -29,6 +29,7 @@ def query_message_list(messages):
 
     for message in tqdm(messages):
       output = run_api(chosen_model = MODEL, instruction = INSTRUCTION, message = message, temperature=TEMPERATURE)
+      output = output.replace('"', '\\"') #New line
       outputs.append(output)
 
     return outputs
