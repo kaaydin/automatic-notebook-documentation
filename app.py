@@ -40,11 +40,13 @@ def generate_new_notebook(upload):
     notebook_dict = json.loads(notebook)
     
     ## Create visualiation of notebook
-    #notebook_visualisation = ""
+    notebook_visualisation = ""
 
-    #for len(notebook_dict)
-        
-    col1.write(notebook_dict)
+    for k in range(len(notebook_dict)):
+        notebook_visualisation += notebook_dict["source"][k]["source"]
+        notebook_visualisation "\n \n "
+
+    col1.write(notebook_visualisation)
 
     #notebook_node = nbformat.from_dict(notebook_dict)
     #stringtest = str(type(notebook_node))
