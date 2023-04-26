@@ -41,12 +41,10 @@ def generate_new_notebook(upload):
     #components.html(col1_html, height=800)
 
     
-    
-    ## At this point, the notebook element is a string. We can try to turn it into a dictionary:
+    ## Turning original notebook into dictionary
     notebook_dict = json.loads(notebook)
-    
 
-    
+    ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
 
     ## Query call to GPT-3.5
@@ -60,15 +58,13 @@ def generate_new_notebook(upload):
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
-    ## 
-
-    col2.write("The notebook code")
+    ## HELP
     nb_true_quotes = json.dumps(nb, indent = 4) 
-
-
     nb_encoded = str(nb_true_quotes).encode('utf-8')
+    
+    
+    ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
-
 
 
 if my_upload:
