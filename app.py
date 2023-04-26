@@ -49,16 +49,18 @@ def generate_new_notebook(upload):
     # st.write("The encoded version")
     # st.write(str(nb))
     st.write("The notebook code")
-    for i in range(len(nb["cells"])):
-        #nb["cells"][i]["source"] =  nb["cells"][i]["source"].replace("'", '"')
-        #nb["cells"][i]["source"] =  nb["cells"][i]["source"].replace('"', '\\"')
+    # for i in range(len(nb["cells"])):
+    #     # nb["cells"][i]["source"] =  nb["cells"][i]["source"].replace("'", '"')
+    #     # nb["cells"][i]["source"] =  nb["cells"][i]["source"].replace('"', '\\"')
 
-        nb["cells"][i]["source"] = json.dumps(nb["cells"][i]["source"])
-        st.write(nb["cells"][i]["source"])
+    #     # nb["cells"][i]["source"] = json.dumps(nb["cells"][i]["source"])
+    #     st.write(nb["cells"][i]["source"])
 
+    
+    # nb_true_quotes = str(nb).replace("'", '"')
+    # nb_true_quotes = nb_true_quotes.replace("None", "null")
 
-    nb_true_quotes = str(nb).replace("'", '"')
-    nb_true_quotes = nb_true_quotes.replace("None", "null")
+    nb_true_quotes = json.dumps(nb, indent = 4) 
 
     
     st.write(nb_true_quotes)
