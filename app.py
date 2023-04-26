@@ -69,7 +69,7 @@ def generate_new_notebook(upload):
         #relevant = nb_true_quotes["cells"][k]["source"]
         #col2.code(relevant)
 
-    col2.write(nb_true_quotes)
+    col2.write(GPT_return)
     
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
