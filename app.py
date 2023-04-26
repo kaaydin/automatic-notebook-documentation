@@ -35,7 +35,7 @@ def generate_new_notebook(upload):
 
     ## Reading notebook as OTF
     notebook = upload.read().decode("utf-8")
-    col1.write(notebook)
+    col1.write(type(notebook))
 
     #col1_html = notebook
     #components.html(col1_html, height=800)
