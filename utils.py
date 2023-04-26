@@ -29,7 +29,7 @@ def create_messagelist(notebook):
 
     for i in range(len(notebook)-1):
         content_notebook = correct_spacing(notebook["cells"][i]["source"])# previously: str(notebook.cells[i]["source"])
-        content_notebook = content_notebook.replace('"', "'")
+        # content_notebook = content_notebook.replace('"', "'")
         content = {"role": "user", "content": f'{content_notebook}'}
         messages.append(content)
 
