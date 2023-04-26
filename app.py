@@ -40,21 +40,9 @@ def generate_new_notebook(upload):
     notebook_dict = json.loads(notebook)
     
     ## Display new notebook
-    col1.code('''
-        ## Test
-        st.line_chart(data)
-        st.area_chart(data)
-        st.bar_chart(data)
-        st.pyplot(fig)
-        st.altair_chart(data)
-        st.vega_lite_chart(data)
-        st.plotly_chart(data)
-        st.bokeh_chart(data)
-        st.pydeck_chart(data)
-        st.deck_gl_chart(data)
-        st.graphviz_chart(data)
-        st.map(data)
-            ''')
+    #teststrings = ""
+    
+    col1.write(notebook)
 
     #notebook_node = nbformat.from_dict(notebook_dict)
     #stringtest = str(type(notebook_node))
