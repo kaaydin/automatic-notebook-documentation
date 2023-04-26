@@ -43,7 +43,6 @@ def generate_new_notebook(upload):
     messages = create_messagelist(notebook_dict)
 
     ## Create visualiation of notebook
-
     for message in messages:
         notebook_visualisation = message["content"]
         col1.code(notebook_visualisation)
@@ -68,7 +67,7 @@ def generate_new_notebook(upload):
     split_nb = nb_true_quotes.split("source: ")
 
     for message in split_nb:
-        col2.code(message)
+        col2.code(message["cells"][0]["source"])
     
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
