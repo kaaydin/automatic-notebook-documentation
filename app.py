@@ -65,9 +65,8 @@ def generate_new_notebook(upload):
     ## Second visualisation
     
     split_nb = nb_true_quotes.split("source: ")
+    col2.write(split_nb)
 
-    for message in split_nb:
-        col2.code(message["cells"][0]["source"])
     
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
