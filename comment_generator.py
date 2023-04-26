@@ -30,7 +30,7 @@ def query_message_list(messages):
     for message in tqdm(messages):
       output = run_api(chosen_model = MODEL, instruction = INSTRUCTION, message = message, temperature=TEMPERATURE)
       output = output.replace('"', "'")
-      output = output.replace("'", "\\'") #New line
+      output = output.replace("'", "\'") #New line
       outputs.append(output)
 
     return outputs

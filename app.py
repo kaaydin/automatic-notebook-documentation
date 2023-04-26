@@ -49,7 +49,7 @@ def generate_new_notebook(upload):
     # st.write("The encoded version")
     # st.write(str(nb))
     nb_true_quotes = str(nb).replace("'", '"')
-    nb_true_quotes = nb_true_quotes.replace('\\\"', '\\"')
+    #nb_true_quotes = nb_true_quotes.replace('\\\"', '\\"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
     # nb_encoded = re.sub('"\w"', '\\"\w\\"' , nb_true_quotes) # Old substitution: nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
     # nb_true_quotes = nb_true_quotes.replace('"', '\\"')
