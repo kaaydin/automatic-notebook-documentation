@@ -40,9 +40,9 @@ def generate_new_notebook(upload):
     nb = nbformat.v4.new_notebook()
     
     for message in GPT_return:
+        message = message.replace("'", '\\"')
+        message = message.replace('"', '\\"')
         st.write(message)
-        message = message.replace("'", '\"')
-        message = message.replace('"', '\"')
         new_cell = nbformat.v4.new_code_cell(message) # old: new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
