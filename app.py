@@ -3,7 +3,6 @@ import streamlit.components.v1 as components
 import nbformat
 import json
 from IPython.core.display import HTML
-from streamlit_echarts import st_echarts
 from nbconvert import HTMLExporter
 
 from comment_generator import query_message_list
