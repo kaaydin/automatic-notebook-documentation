@@ -38,23 +38,18 @@ def generate_new_notebook(upload):
 
     ## Turning original notebook into dictionary
     notebook_dict = json.loads(notebook)
-    
-    ## Create visualiation of notebook
-    notebook_visualisation = ""
-
-    for k in range(len(notebook_dict)):
-        notebook_visualisation += notebook_dict["source"][k]["source"]
-        notebook_visualisation += "\n \n "
-
-    col1.write(notebook_visualisation)
-
-    #notebook_node = nbformat.from_dict(notebook_dict)
-    #stringtest = str(type(notebook_node))
-    #html_output, _ = HTMLExporter().from_notebook_node(notebook_node)
-    #col1.write(html_output)
 
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
+
+    ## Create visualiation of notebook
+    notebook_visualisation = ""
+
+    for message in messages:
+        notebook_visualisation += messages
+        notebook_visualisation += "\n \n "
+
+    col1.code(notebook_visualisation)
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
