@@ -18,8 +18,8 @@ def generate_new_notebook(upload):
     notebook = upload.read().decode("utf-8")
 
     col1.write("Original Notebook :camera:")
-    col1_html = notebook
-    components.html(col1_html, height=800)
+    # col1_html = notebook
+    # components.html(col1_html, height=800)
     
     ## At this point, the notebook element is a string. We can try to turn it into a dictionairy:
     notebook_dict = json.loads(notebook)
@@ -51,18 +51,13 @@ def generate_new_notebook(upload):
     nb_encoded = str(nb_true_quotes).encode('utf-8')
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
 
-def display_notebook(notebook_data):
     html_exporter = HTMLExporter()
-    notebook_html, _ = html_exporter.from_notebook_node(notebook_data)
-    st.write(HTML(notebook_html), unsafe_allow_html=True)
-    
-
+    notebook_html, _ = html_exporter.from_notebook_node(nb_encoded)
+    col2.write(HTML(notebook_html), unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 
 if my_upload:
-    notebook_data = json.load(my_upload)
-    display_notebook(notebook_data)
     generate_new_notebook(my_upload)
 
