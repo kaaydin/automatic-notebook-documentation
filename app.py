@@ -65,9 +65,9 @@ def generate_new_notebook(upload):
 
     ## Second visualisation
     
-    for k in range(len(messages)):
-        relevant = nb_true_quotes["cells"][k]["source"]
-        col2.code(relevant)
+    #for k in range(len(messages)):
+        #relevant = nb_true_quotes["cells"][k]["source"]
+        #col2.code(relevant)
 
     col2.write(nb_true_quotes)
     
