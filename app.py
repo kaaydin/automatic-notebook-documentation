@@ -42,7 +42,7 @@ def generate_new_notebook(upload):
     ## Display new notebook
     #teststrings = ""
     
-    col1.write(notebook)
+    col1.write(str(type(notebook)))
 
     #notebook_node = nbformat.from_dict(notebook_dict)
     #stringtest = str(type(notebook_node))
