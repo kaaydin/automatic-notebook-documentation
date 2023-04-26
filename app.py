@@ -45,11 +45,11 @@ def generate_new_notebook(upload):
     ## Create visualiation of notebook
     notebook_visualisation = ""
 
-    for message in messages:
-        notebook_visualisation += message
-        notebook_visualisation += "\n \n "
+    #for message in messages:
+    #    notebook_visualisation += message
+    #    notebook_visualisation += "\n \n "
 
-    col1.code(notebook_visualisation)
+    col1.write(messages)
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
