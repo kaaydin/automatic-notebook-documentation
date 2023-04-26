@@ -59,22 +59,18 @@ def generate_new_notebook(upload):
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
-    ## Second visualisation
-    
-    notebook_visualisation_edited = ""
-
-    #for message in GPT_return:
-    #    notebook_visualisation += message
-    #    notebook_visualisation += "\n \n"
-
-    
-
     ## HELP
     nb_true_quotes = json.dumps(nb, indent = 4) 
     nb_encoded = str(nb_true_quotes).encode('utf-8')
 
+    ## Second visualisation
+    
+    notebook_dict_edited = json.loads(nb_true_quotes)
+    messages_edited = create_messagelist(notebook_dict_edited)
 
-    col2.code(nb_true_quotes)
+    for message in messages_edited:
+        notebook_visualisation = message["content"]
+        col2.code(notebook_visualisation)
     
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
