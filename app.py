@@ -59,7 +59,6 @@ def generate_new_notebook(upload):
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
-
     ## Second visualisation
     
     notebook_visualisation_edited = ""
@@ -75,7 +74,7 @@ def generate_new_notebook(upload):
     nb_encoded = str(nb_true_quotes).encode('utf-8')
 
 
-    col2.write(nb_encoded)
+    col2.code(nb_encoded)
     
     
     ## Creating download button with the updated notebook
