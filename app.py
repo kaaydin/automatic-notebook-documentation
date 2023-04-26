@@ -53,6 +53,16 @@ def generate_new_notebook(upload):
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
+
+    ## Second visualisation
+    
+    notebook_visualisation_edited = ""
+
+    for message in GPT_return:
+        notebook_visualisation += message
+        notebook_visualisation += "\n \n"
+
+    col2.code(notebook_visualisation_edited)
     
     ## Instantiate new notebook
     nb = nbformat.v4.new_notebook()
