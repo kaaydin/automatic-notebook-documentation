@@ -51,6 +51,7 @@ def generate_new_notebook(upload):
     nb_true_quotes = nb_true_quotes.replace("None", "null")
     # nb_encoded = re.sub('"\w"', '\\"\w\\"' , nb_true_quotes) # Old substitution: nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
     nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
+    nb_true_quotes = nb_true_quotes.replace('"training"', '\\"training\\"')
     nb_encoded = str(nb_true_quotes).encode('utf-8')
     st.write("After change")
     st.write(str(nb_true_quotes))
