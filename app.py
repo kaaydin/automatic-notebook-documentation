@@ -58,11 +58,11 @@ def generate_new_notebook(upload):
     
     notebook_visualisation_edited = ""
 
-    for message in GPT_return:
-        notebook_visualisation += message
-        notebook_visualisation += "\n \n"
+    #for message in GPT_return:
+    #    notebook_visualisation += message
+    #    notebook_visualisation += "\n \n"
 
-    col2.code(notebook_visualisation_edited)
+    col2.write(GPT_return)
     
     ## Instantiate new notebook
     nb = nbformat.v4.new_notebook()
