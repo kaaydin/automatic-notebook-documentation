@@ -64,7 +64,8 @@ def generate_new_notebook(upload):
     nb_encoded = str(nb_true_quotes).encode('utf-8')
 
     ## Second visualisation
-    col2.code(nb_true_quotes["cells"][0]["source"])
+    notebook_dict_edited = json.loads(nb_true_quotes)
+    col2.write(notebook_dict_edited)
     
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
