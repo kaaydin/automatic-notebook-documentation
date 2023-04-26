@@ -3,6 +3,7 @@ import streamlit.components.v1 as components
 import nbconvert
 import nbformat
 import json
+import re
 
 from comment_generator import query_message_list, run_api
 from utils import read_notebook, create_notebook, save_notebook, write_notebook, create_messagelist, correct_spacing
@@ -48,6 +49,7 @@ def generate_new_notebook(upload):
     # st.write(str(nb))
     nb_true_quotes = str(nb).replace("'", '"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
+    # nb_encoded = re.sub('"\w"', '\\"\w\\"' , nb_true_quotes) # Old substitution: nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
     nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
     nb_encoded = str(nb_true_quotes).encode('utf-8')
     st.write("After change")
