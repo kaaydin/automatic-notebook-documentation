@@ -53,6 +53,8 @@ def generate_new_notebook(upload):
 
     nb_true_quotes = str(nb).replace("'", '"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
+
+    st.write(nb_true_quotes)
     # nb_true_quotes = nb_true_quotes.replace('"training"', '\\"training\\"')
     # st.write(nb_true_quotes)
     # nb_encoded = str(nb_true_quotes).encode('utf-8')
