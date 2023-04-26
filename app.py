@@ -33,12 +33,17 @@ def generate_new_notebook(upload):
     ## Writing title for the second column
     col2.write("Updated notebook :camera:")
 
-    ## Reading notebook as OTF
+    ## Reading notebook in JSON-based format
     notebook = upload.read().decode("utf-8")
-    col1.write(type(notebook))
-
+    
+    nb_formatted = nbformat.reads(notebook, as_version=nbformat.NO_CONVERT)
+    html_exporter = HTMLExporter()
+    (html_output, resources) = html_exporter.from_notebook_node(nb_formatted)
+    st.components.v1.html(html_output, height=1000)
+    
     #col1_html = notebook
     #components.html(col1_html, height=800)
+
 
     
     ## Turning original notebook into dictionary
