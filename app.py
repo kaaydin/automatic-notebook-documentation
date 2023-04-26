@@ -46,7 +46,7 @@ def generate_new_notebook(upload):
     notebook_visualisation = ""
 
     for message in messages:
-        notebook_visualisation += messages
+        notebook_visualisation += message
         notebook_visualisation += "\n \n "
 
     col1.code(notebook_visualisation)
