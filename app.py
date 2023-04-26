@@ -49,7 +49,7 @@ def generate_new_notebook(upload):
     # st.write("The encoded version")
     # st.write(str(nb))
     st.write("The notebook code")
-    for i in range(len(nb["cells"])):
+    for i in range(len(nb["cells"]) + 1):
         nb["cells"][i]["source"] =  nb["cells"][i]["source"].replace("'", '"')
         nb["cells"][i]["source"] =  nb["cells"][i]["source"].replace('"', '\\"')
         st.write(nb["cells"][i]["source"])
