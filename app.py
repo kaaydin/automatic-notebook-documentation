@@ -40,6 +40,7 @@ def generate_new_notebook(upload):
     nb = nbformat.v4.new_notebook()
     
     for message in GPT_return:
+        st.write(message)
         new_cell = nbformat.v4.new_code_cell(message) # old: new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
@@ -50,15 +51,15 @@ def generate_new_notebook(upload):
     nb_true_quotes = str(nb).replace("'", '"')
     nb_true_quotes = nb_true_quotes.replace("None", "null")
     # nb_encoded = re.sub('"\w"', '\\"\w\\"' , nb_true_quotes) # Old substitution: nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
-    #nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
-    #nb_true_quotes = nb_true_quotes.replace('"training"', '\\"training\\"')
+    # nb_true_quotes = nb_true_quotes.replace('"r"', '\\"r\\"')
+    # nb_true_quotes = nb_true_quotes.replace('"training"', '\\"training\\"')
     nb_encoded = str(nb_true_quotes).encode('utf-8')
-    st.write("After change")
-    st.write(str(nb_true_quotes))
-    #col2.write("Documented Notebook :wrench:")
-    #col2_html = render_notebook(adjusted_notebook)
-    #components.html(col2_html, height=800)
-    #st.sidebar.markdown("\n")
+    # st.write("After change")
+    # st.write(str(nb_true_quotes))
+    # col2.write("Documented Notebook :wrench:")
+    # col2_html = render_notebook(adjusted_notebook)
+    # components.html(col2_html, height=800)
+    # st.sidebar.markdown("\n")
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
     
 
