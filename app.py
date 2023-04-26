@@ -36,22 +36,14 @@ def generate_new_notebook(upload):
     ## Reading notebook in JSON-based format
     notebook = upload.read().decode("utf-8")
 
-    #col1.write(notebook)
-    
-    #nb_formatted = nbformat.reads(notebook, as_version=nbformat.NO_CONVERT)
-    #html_exporter = HTMLExporter()
-    #(html_output, resources) = html_exporter.from_notebook_node(nb_formatted)
-    #st.components.v1.html(html_output, height=1000)
-
-    #col1_html = notebook
-    #components.html(col1_html, height=800)
-
-
-    
     ## Turning original notebook into dictionary
     notebook_dict = json.loads(notebook)
-
-    col1.write(notebook_dict)
+    
+    ## Display new notebook
+    notebook_node = nbformat.from_dict(notebook_dict)
+    html_exporter = HTMLExporter()
+    (html_output, resources) = html_exporter.from_notebook_node(notebook_node)
+    col1.write(html_output)
 
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
