@@ -40,10 +40,11 @@ def generate_new_notebook(upload):
     notebook_dict = json.loads(notebook)
     
     ## Display new notebook
-    notebook_node = nbformat.from_dict(notebook_dict)
-    html_exporter = HTMLExporter()
-    html_output, _ = html_exporter.from_notebook_node(notebook_node)
-    col1.write(html_output)
+    #notebook_node = nbformat.from_dict(notebook_dict)
+    #html_exporter = HTMLExporter()
+    #html_output, _ = html_exporter.from_notebook_node(notebook_node)
+    stringtest = str(type(notebook_dict))
+    col1.write(stringtest)
 
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
