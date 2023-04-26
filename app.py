@@ -66,6 +66,8 @@ def generate_new_notebook(upload):
     ## Second visualisation
     notebook_dict_edited = json.loads(nb_true_quotes)
     col2.write(notebook_dict_edited)
+    notebook_dict_edited2 = json.loads(nb_encoded)
+    col2.write(notebook_dict_edited2)
     
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
