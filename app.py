@@ -44,7 +44,7 @@ def generate_new_notebook(upload):
 
     for k in range(len(notebook_dict)):
         notebook_visualisation += notebook_dict["source"][k]["source"]
-        notebook_visualisation "\n \n "
+        notebook_visualisation += "\n \n "
 
     col1.write(notebook_visualisation)
 
