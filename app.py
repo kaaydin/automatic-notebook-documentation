@@ -77,3 +77,6 @@ if my_upload:
     generate_new_notebook(my_upload)
 else:
     st.write("Please upload a Jupyter Notebook to view.")
+
+
+st.write("Hello Kaan, nice that we are working on this together :) ")
