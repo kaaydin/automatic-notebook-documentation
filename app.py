@@ -66,7 +66,11 @@ def generate_new_notebook(upload):
 
     ## Second visualisation
     #test_text = nb_encoded["cells"]
-    col2.write(notebook_dict_edited)
+    messages_edited = create_messagelist(notebook_dict_edited)
+    for message in messages_edited:
+        notebook_visualisation = message["content"]
+        col2.code(notebook_visualisation)
+    
     #col2.write(type(nb_true_quotes))
     #notebook_dict_edited2 = type(nb_encoded)
     #col2.write(type(nb_encoded))
