@@ -45,8 +45,6 @@ def generate_new_notebook(upload):
 
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
-
-    col1.write(messages)
     
     ## Create new notebook & fill 
     nb_new = nbformat.v4.new_notebook()
