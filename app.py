@@ -2,6 +2,7 @@
 import streamlit as st
 import nbformat
 import json
+import base64
 from nbconvert import HTMLExporter
 
 from comment_generator import query_message_list
@@ -76,9 +77,15 @@ def generate_new_notebook(upload):
     #notebook_dict_edited2 = type(nb_encoded)
     #col2.write(type(nb_encoded))
     
+    nb_json = json.loads(base64.b64decode(nb_encoded).decode("utf-8"))
+    html_exporter = HTMLExporter()
+    nb_html, _ = html_exporter.from_notebook_node(nb_json)
+    with st.beta_expander("Notebook content"):
+        st.write(nb_html, unsafe_allow_html=True)
+
     ## Creating download button with the updated notebook
     my_download = st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
-    notebook_edited = my_download.read().decode("utf-8")
+    notebook_edited = download.read().decode("utf-8")
     notebook_dict = json.loads(notebook_edited)
     messages = create_messagelist(notebook_dict)
     for message in messages:
