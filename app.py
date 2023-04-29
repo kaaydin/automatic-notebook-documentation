@@ -38,19 +38,29 @@ def generate_new_notebook(upload):
     col2.write("Updated notebook :camera:")
 
     ## Reading notebook in JSON-based format
-    notebook = upload.read().decode("utf-8")
+    notebook_uploaded = upload.read().decode("utf-8")
 
     ## Turning original notebook into dictionary
-    notebook_dict = json.loads(notebook)
+    notebook_dict = json.loads(notebook_uploaded)
 
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
 
-    ## Create visualiation of notebook
+    ## Create new notebook & fill 
+    nb_new = nbformat.v4.new_notebook()
     for message in messages:
-        notebook_visualisation = message["content"]
-        modified_string = notebook_visualisation.replace("\n ", "\n")
-        col1.code(modified_string)
+        new_cell = nbformat.v4.new_code_cell(message)
+        nb_new.cells.append(new_cell)
+
+    html_exporter = HTMLExporter()
+    (html_output_new, _) = html_exporter.from_notebook_node(nb_new)
+    col1.write(st_html(html_output_new, height=800, scrolling=True))
+
+    ### Create visualiation of notebook
+    #for message in messages:
+    #    notebook_visualisation = message["content"]
+    #    modified_string = notebook_visualisation.replace("\n ", "\n")
+    #    col1.code(modified_string)
 
 
 
@@ -71,41 +81,10 @@ def generate_new_notebook(upload):
 
     html_exporter = HTMLExporter()
     (html_output, _) = html_exporter.from_notebook_node(nb)
-    col2.write(st_html(html_output, width='100%',  height=800, scrolling=True))
+    col2.write(st_html(html_output, height=800, scrolling=True))
 
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
-
-
-    ## Second visualisation
-    #test_text = nb_encoded["cells"]
-    #messages_edited = create_messagelist(nb_true_quotes)
-    
-    #for message in messages_edited:
-    #    notebook_visualisation = str(message["content"])
-    #    col2.code(notebook_visualisation)
-    
-    #col2.write(type(nb_true_quotes))
-    #notebook_dict_edited2 = type(nb_encoded)
-    #col2.write(type(nb_encoded))
-    
-    #nb_json = json.loads(base64.b64decode(nb_encoded).decode("utf-8"))
-    #html_exporter = HTMLExporter()
-    #nb_html, _ = html_exporter.from_notebook_node(nb_json)
-    #with st.beta_expander("Notebook content"):
-        #st.write(nb_html, unsafe_allow_html=True)
-    
-
-
-    #notebook_edited = download.read().decode("utf-8")
-    #notebook_dict = json.loads(notebook_edited)
-    #messages = create_messagelist(notebook_dict)
-    #for message in messages:
-    #    notebook_visualisation = message["content"]
-    #    modified_string = notebook_visualisation.replace("\n ", "\n")
-    #    col2.code(modified_string)
-
-
 
 
 if my_upload:
