@@ -45,10 +45,6 @@ def generate_new_notebook(upload):
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
 
-    html_exporter = HTMLExporter()
-    (html_output, _) = html_exporter.from_notebook_node(notebook)
-    st_html(html_output, width=900, height=800, scrolling=True)
-
     ## Create visualiation of notebook
     #for message in messages:
     #    notebook_visualisation = message["content"]
@@ -71,6 +67,10 @@ def generate_new_notebook(upload):
     ## 
     nb_true_quotes = json.dumps(nb, indent = 4) 
     nb_encoded = str(nb_true_quotes).encode('utf-8')
+
+    html_exporter = HTMLExporter()
+    (html_output, _) = html_exporter.from_notebook_node(nb)
+    st_html(html_output, width=900, height=800, scrolling=True)
 
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
