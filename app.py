@@ -4,6 +4,8 @@ import nbformat
 import json
 import base64
 from nbconvert import HTMLExporter
+from streamlit.components.v1 import html as st_html
+
 
 from comment_generator import query_message_list
 from utils import create_messagelist
@@ -43,11 +45,17 @@ def generate_new_notebook(upload):
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
 
+    html_exporter = HTMLExporter()
+    (html_output, _) = html_exporter.from_notebook_node(notebook_dict)
+    st_html(html_output, width=900, height=800, scrolling=True)
+
     ## Create visualiation of notebook
-    for message in messages:
-        notebook_visualisation = message["content"]
-        modified_string = notebook_visualisation.replace("\n ", "\n")
-        col1.code(modified_string)
+    #for message in messages:
+    #    notebook_visualisation = message["content"]
+    #    modified_string = notebook_visualisation.replace("\n ", "\n")
+    #    col1.code(modified_string)
+
+
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
@@ -60,10 +68,14 @@ def generate_new_notebook(upload):
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
-    ## HELP
+    ## 
     nb_true_quotes = json.dumps(nb, indent = 4) 
     nb_encoded = str(nb_true_quotes).encode('utf-8')
-    #notebook_dict_edited = json.loads(nb_encoded)
+
+    ## Creating download button with the updated notebook
+    st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
+
+
 
     ## Second visualisation
     #test_text = nb_encoded["cells"]
@@ -77,14 +89,14 @@ def generate_new_notebook(upload):
     #notebook_dict_edited2 = type(nb_encoded)
     #col2.write(type(nb_encoded))
     
-    nb_json = json.loads(base64.b64decode(nb_encoded).decode("utf-8"))
-    html_exporter = HTMLExporter()
-    nb_html, _ = html_exporter.from_notebook_node(nb_json)
-    with st.beta_expander("Notebook content"):
-        st.write(nb_html, unsafe_allow_html=True)
+    #nb_json = json.loads(base64.b64decode(nb_encoded).decode("utf-8"))
+    #html_exporter = HTMLExporter()
+    #nb_html, _ = html_exporter.from_notebook_node(nb_json)
+    #with st.beta_expander("Notebook content"):
+        #st.write(nb_html, unsafe_allow_html=True)
 
     ## Creating download button with the updated notebook
-    my_download = st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
+    st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
     notebook_edited = download.read().decode("utf-8")
     notebook_dict = json.loads(notebook_edited)
     messages = create_messagelist(notebook_dict)
