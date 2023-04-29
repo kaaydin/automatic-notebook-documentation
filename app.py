@@ -64,9 +64,9 @@ def generate_new_notebook(upload):
     nb_encoded = str(nb_true_quotes).encode('utf-8')
 
     ## Second visualisation
-    notebook_dict_edited = json.loads(nb_true_quotes)
+    notebook_dict_edited = print(type(nb_true_quotes))
     col2.write(notebook_dict_edited)
-    notebook_dict_edited2 = json.loads(nb_encoded)
+    notebook_dict_edited2 = print(type(nb_encoded))
     col2.write(notebook_dict_edited2)
     
     ## Creating download button with the updated notebook
