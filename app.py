@@ -46,16 +46,18 @@ def generate_new_notebook(upload):
     ## Reading dictionary and creating message list
     messages = create_messagelist(notebook_dict)
 
-    ## Create new notebook & fill 
-    nb_new = nbformat.v4.new_notebook()
+    col1.write(messages)
     
-    for message in messages:
-        new_cell = nbformat.v4.new_code_cell(message)
-        nb_new.cells.append(new_cell)
+    ## Create new notebook & fill 
+    #nb_new = nbformat.v4.new_notebook()
 
-    html_exporter = HTMLExporter()
-    (html_output_new, _) = html_exporter.from_notebook_node(nb_new)
-    col1.write(st_html(html_output_new, height=800, scrolling=True))
+    #for message in messages:
+    #    new_cell = nbformat.v4.new_code_cell(message)
+    #    nb_new.cells.append(new_cell)
+
+    #html_exporter = HTMLExporter()
+    #(html_output_new, _) = html_exporter.from_notebook_node(nb_new)
+    #col1.write(st_html(html_output_new, height=800, scrolling=True))
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
