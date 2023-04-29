@@ -1,10 +1,11 @@
 ## Importing all relevant functions
 import streamlit as st
-import nbformat
-import json
-import base64
-from nbconvert import HTMLExporter
 from streamlit.components.v1 import html as st_html
+
+import nbformat
+from nbconvert import HTMLExporter
+
+import json
 
 
 from comment_generator import query_message_list
@@ -24,18 +25,11 @@ st.sidebar.write("## Upload and download :gear:")
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 
 ## Setting to columns (left: old notebook; right: new notebook)
-#col1, col2 = st.columns(2)
 col1, col2 = st.columns(2)
 
 ## Function to define 
 
 def generate_new_notebook(upload):
-    
-    ## Writing title for the first column 
-    col1.write("Original notebook :camera:")
-    
-    ## Writing title for the second column
-    col2.write("Updated notebook :camera:")
 
     ## Reading notebook in JSON-based format
     notebook_uploaded = upload.read().decode("utf-8")
@@ -58,6 +52,7 @@ def generate_new_notebook(upload):
     (html_output_new, _) = html_exporter.from_notebook_node(nb_new)
 
     with col1:
+        st.header("Original notebook :camera:")
         st_html(html_output_new, height=800, scrolling=True)
 
     ## Query call to GPT-3.5
@@ -77,7 +72,10 @@ def generate_new_notebook(upload):
 
     html_exporter = HTMLExporter()
     (html_output, _) = html_exporter.from_notebook_node(nb)
-    col2.write(st_html(html_output, height=800, scrolling=True))
+
+    with col2:
+        st.header("Updated notebook :camera:")
+        st_html(html_output, height=800, scrolling=True)
 
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
