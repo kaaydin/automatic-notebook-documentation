@@ -56,7 +56,9 @@ def generate_new_notebook(upload):
 
     html_exporter = HTMLExporter()
     (html_output_new, _) = html_exporter.from_notebook_node(nb_new)
-    col1.write(st_html(html_output_new, height=800, scrolling=True))
+
+    with col1:
+        st_html(html_output_new, height=800, scrolling=True)
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
