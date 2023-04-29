@@ -64,8 +64,8 @@ def generate_new_notebook(upload):
     nb_encoded = str(nb_true_quotes).encode('utf-8')
 
     ## Second visualisation
-    test_text = nb_encoded["cells"]
-    col2.write(test_text)
+    #test_text = nb_encoded["cells"]
+    col2.write(nb_encoded)
     #col2.write(type(nb_true_quotes))
     #notebook_dict_edited2 = type(nb_encoded)
     #col2.write(type(nb_encoded))
