@@ -62,22 +62,31 @@ def generate_new_notebook(upload):
     ## HELP
     nb_true_quotes = json.dumps(nb, indent = 4) 
     nb_encoded = str(nb_true_quotes).encode('utf-8')
-    notebook_dict_edited = json.loads(nb_encoded)
+    #notebook_dict_edited = json.loads(nb_encoded)
 
     ## Second visualisation
     #test_text = nb_encoded["cells"]
-    messages_edited = create_messagelist(nb_true_quotes)
+    #messages_edited = create_messagelist(nb_true_quotes)
     
-    for message in messages_edited:
-        notebook_visualisation = str(message["content"])
-        col2.code(notebook_visualisation)
+    #for message in messages_edited:
+    #    notebook_visualisation = str(message["content"])
+    #    col2.code(notebook_visualisation)
     
     #col2.write(type(nb_true_quotes))
     #notebook_dict_edited2 = type(nb_encoded)
     #col2.write(type(nb_encoded))
     
     ## Creating download button with the updated notebook
-    st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
+    my_download = st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
+    notebook_edited = my_download.read().decode("utf-8")
+    notebook_dict = json.loads(notebook_edited)
+    messages = create_messagelist(notebook_dict)
+    for message in messages:
+        notebook_visualisation = message["content"]
+        modified_string = notebook_visualisation.replace("\n ", "\n")
+        col2.code(modified_string)
+
+
 
 
 if my_upload:
