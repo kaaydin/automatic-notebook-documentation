@@ -24,7 +24,8 @@ st.sidebar.write("## Upload and download :gear:")
 my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 
 ## Setting to columns (left: old notebook; right: new notebook)
-col1, col2 = st.columns(2)
+#col1, col2 = st.columns(2)
+col1, col2 = st.beta_columns(2)
 
 ## Function to define 
 
