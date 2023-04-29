@@ -25,7 +25,7 @@ my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 
 ## Setting to columns (left: old notebook; right: new notebook)
 #col1, col2 = st.columns(2)
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 
 ## Function to define 
 
@@ -48,6 +48,7 @@ def generate_new_notebook(upload):
 
     ## Create new notebook & fill 
     nb_new = nbformat.v4.new_notebook()
+    
     for message in messages:
         new_cell = nbformat.v4.new_code_cell(message)
         nb_new.cells.append(new_cell)
@@ -55,14 +56,6 @@ def generate_new_notebook(upload):
     html_exporter = HTMLExporter()
     (html_output_new, _) = html_exporter.from_notebook_node(nb_new)
     col1.write(st_html(html_output_new, height=800, scrolling=True))
-
-    ### Create visualiation of notebook
-    #for message in messages:
-    #    notebook_visualisation = message["content"]
-    #    modified_string = notebook_visualisation.replace("\n ", "\n")
-    #    col1.code(modified_string)
-
-
 
     ## Query call to GPT-3.5
     GPT_return = query_message_list(messages)
@@ -94,3 +87,11 @@ else:
 
 
 st.write("Hello Kaan, nice that we are working on this together :) ")
+
+
+
+    ### Create visualiation of notebook
+    #for message in messages:
+    #    notebook_visualisation = message["content"]
+    #    modified_string = notebook_visualisation.replace("\n ", "\n")
+    #    col1.code(modified_string)
