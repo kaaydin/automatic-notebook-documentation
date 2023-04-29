@@ -66,7 +66,7 @@ def generate_new_notebook(upload):
 
     ## Second visualisation
     #test_text = nb_encoded["cells"]
-    messages_edited = create_messagelist(notebook_dict_edited)
+    messages_edited = create_messagelist(nb_true_quotes)
     
     for message in messages_edited:
         notebook_visualisation = str(message["content"])
