@@ -46,10 +46,10 @@ def generate_new_notebook(upload):
     messages = create_messagelist(notebook_dict)
 
     ## Create visualiation of notebook
-    #for message in messages:
-    #    notebook_visualisation = message["content"]
-    #    modified_string = notebook_visualisation.replace("\n ", "\n")
-    #    col1.code(modified_string)
+    for message in messages:
+        notebook_visualisation = message["content"]
+        modified_string = notebook_visualisation.replace("\n ", "\n")
+        col1.code(modified_string)
 
 
 
