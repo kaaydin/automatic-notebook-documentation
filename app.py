@@ -66,12 +66,13 @@ def generate_new_notebook(upload):
         new_cell = nbformat.v4.new_code_cell(message)
         nb.cells.append(new_cell)
 
+    html_exporter = HTMLExporter()
+    (html_output, _) = html_exporter.from_notebook_node(nb)
+
     ## 
     nb_true_quotes = json.dumps(nb, indent = 4) 
     nb_encoded = str(nb_true_quotes).encode('utf-8')
 
-    html_exporter = HTMLExporter()
-    (html_output, _) = html_exporter.from_notebook_node(nb)
 
     with col2:
         st.header("Updated notebook :camera:")
@@ -86,13 +87,5 @@ if my_upload:
 else:
     st.write("Please upload a Jupyter Notebook to view.")
 
-
 st.write("Hello Kaan, nice that we are working on this together :) ")
-
-
-
-    ### Create visualiation of notebook
-    #for message in messages:
-    #    notebook_visualisation = message["content"]
-    #    modified_string = notebook_visualisation.replace("\n ", "\n")
-    #    col1.code(modified_string)
+st.write("Hello Dave, also appreciate working with you :D")
