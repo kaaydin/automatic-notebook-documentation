@@ -42,6 +42,7 @@ def generate_new_notebook(upload):
     ## Create HTML
     original_HTML = retrieve_html(original_notebook)
 
+    ## 
     with col1:
         st.header("Original notebook :camera:")
         st_html(original_HTML, height=800, scrolling=True)
@@ -55,6 +56,7 @@ def generate_new_notebook(upload):
     ## Retreive new HMTL
     documented_HTML = retrieve_html(documented_notebook)
 
+    ## 
     with col2:
         st.header("Updated notebook :camera:")
         st_html(documented_HTML, height=800, scrolling=True)
@@ -64,6 +66,7 @@ def generate_new_notebook(upload):
 
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", downloaded_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
+
 
 
 if my_upload:
