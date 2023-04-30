@@ -1,6 +1,8 @@
 import nbformat
-import json
 from nbconvert import HTMLExporter
+
+import json
+
 
 ## Read existing notebook
 def read_notebook(notebook_path):
@@ -12,7 +14,10 @@ def read_notebook_st(upload):
     notebook_uploaded = upload.read().decode("utf-8")
     notebook_dict = json.loads(notebook_uploaded)
 
-    return notebook_dict
+    messages = create_messagelist(notebook_dict)
+    notebook = create_notebook(messages)
+
+    return notebook
     
 ## Instantiate new notebook
 def create_notebook(messages):

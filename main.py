@@ -1,16 +1,26 @@
 import argparse
 
+
+from utils import read_notebook, create_notebook, create_messagelist, save_notebook
 from comment_generator import query_message_list
-from utils import read_notebook, create_notebook, save_notebook, write_notebook, create_messagelist
 
 
 def main(args):
-    source_notebook = read_notebook(args.input_file)
-    messages = create_messagelist(source_notebook) 
-    outputs = query_message_list(messages)
-    new_notebook = create_notebook()
-    write_notebook(new_notebook, outputs)
-    save_notebook(new_notebook, "new_notebook.ipynb")
+    
+    ##
+    original_notebook = read_notebook(args.input_file)
+    
+    ##
+    original_messages = create_messagelist(original_notebook) 
+    
+    ##
+    documented_messages = query_message_list(original_messages)
+    
+    ##
+    documented_notebook = create_notebook(documented_messages)
+    
+    ##
+    save_notebook(documented_notebook, "documented_notebook.ipynb")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate comments for Jupyter notebook cells.")

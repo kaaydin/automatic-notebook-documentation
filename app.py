@@ -2,12 +2,7 @@
 import streamlit as st
 from streamlit.components.v1 import html as st_html
 
-from utils import read_notebook_st
-from utils import create_notebook
-from utils import create_messagelist
-from utils import retrieve_html
-from utils import save_notebook_st
-
+from utils import read_notebook_st, create_notebook, create_messagelist, retrieve_html, save_notebook_st
 from comment_generator import query_message_list
 
 ## Setting website configurations
@@ -31,14 +26,8 @@ col1, col2 = st.columns(2)
 def generate_new_notebook(upload):
 
     ## Turning upload into dictionary
-    notebook = read_notebook_st(upload)
+    original_notebook = read_notebook_st(upload)
 
-    ## Reading dictionary and creating message list
-    messages = create_messagelist(notebook)
-    
-    ## Create new notebook & fill 
-    original_notebook = create_notebook(messages)
-    
     ## Create HTML
     original_HTML = retrieve_html(original_notebook)
 
@@ -47,6 +36,10 @@ def generate_new_notebook(upload):
         st.header("Original notebook :camera:")
         st_html(original_HTML, height=800, scrolling=True)
 
+    
+    ## Reading dictionary and creating message list
+    messages = create_messagelist(original_notebook)
+    
     ## Query call to GPT-3.5
     documented_messages = query_message_list(messages)
     
