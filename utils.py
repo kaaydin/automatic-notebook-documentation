@@ -9,7 +9,7 @@ def read_notebook(notebook_path):
     with open(notebook_path) as f:
         return nbformat.read(f, as_version=4)
 
-##
+## 
 def read_notebook_st(upload):
     notebook_uploaded = upload.read().decode("utf-8")
     notebook_dict = json.loads(notebook_uploaded)
@@ -51,7 +51,9 @@ def retrieve_html(notebook):
 def create_messagelist(notebook):
     messages = []
 
-    for i in range(len(notebook)-1):
+    range_iter = len(notebook["cells"])
+
+    for i in range(range_iter):
         content = correct_spacing(notebook["cells"][i]["source"])
         messages.append(content)
 

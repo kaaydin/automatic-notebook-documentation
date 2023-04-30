@@ -1,6 +1,5 @@
 import argparse
 
-
 from utils import read_notebook, create_notebook, create_messagelist, save_notebook
 from comment_generator import query_message_list
 

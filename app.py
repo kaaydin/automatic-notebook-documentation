@@ -38,10 +38,10 @@ def generate_new_notebook(upload):
 
     
     ## Reading dictionary and creating message list
-    messages = create_messagelist(original_notebook)
+    original_messages = create_messagelist(original_notebook)
     
     ## Query call to GPT-3.5
-    documented_messages = query_message_list(messages)
+    documented_messages = query_message_list(original_messages)
     
     ## Create new notebook & fill
     documented_notebook = create_notebook(documented_messages)
@@ -59,7 +59,6 @@ def generate_new_notebook(upload):
 
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", downloaded_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
-
 
 
 if my_upload:
