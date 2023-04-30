@@ -1,5 +1,4 @@
 import openai
-from tqdm import tqdm
 
 API_KEY = "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"
 openai.api_key = API_KEY
@@ -25,12 +24,12 @@ def run_api(message, chosen_model=MODEL, instruction=INSTRUCTION, temperature = 
   return output_text
 
 def query_message_list(messages):
-    outputs = []
+    
+    new_messages = []
 
-    for message in tqdm(messages):
-      output = run_api(chosen_model = MODEL, instruction = INSTRUCTION, message = message, temperature=TEMPERATURE)
-      # output = output.replace('"', "'")
-      # output = output.replace("'", "\'") #New line
-      outputs.append(output)
+    for message in messages:
+      queried_message = {"role": "user", "content": f'{message}'}
+      output = run_api(chosen_model = MODEL, instruction = INSTRUCTION, message = queried_message, temperature=TEMPERATURE)
+      new_messages.append(output)
 
-    return outputs
+    return new_messages

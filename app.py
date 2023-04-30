@@ -2,14 +2,13 @@
 import streamlit as st
 from streamlit.components.v1 import html as st_html
 
-import nbformat
-from nbconvert import HTMLExporter
-
-import json
-
+from utils import read_notebook_st
+from utils import create_notebook
+from utils import create_messagelist
+from utils import retrieve_html
+from utils import save_notebook_st
 
 from comment_generator import query_message_list
-from utils import create_messagelist
 
 ## Setting website configurations
 st.set_page_config(layout="wide", page_title="Automatic Documentation for Jupyter Notebooks")
@@ -31,61 +30,43 @@ col1, col2 = st.columns(2)
 
 def generate_new_notebook(upload):
 
-    ## Reading notebook in JSON-based format
-    notebook_uploaded = upload.read().decode("utf-8")
-
-    ## Turning original notebook into dictionary
-    notebook_dict = json.loads(notebook_uploaded)
+    ## Turning upload into dictionary
+    notebook = read_notebook_st(upload)
 
     ## Reading dictionary and creating message list
-    messages = create_messagelist(notebook_dict)
+    messages = create_messagelist(notebook)
     
     ## Create new notebook & fill 
-    nb_new = nbformat.v4.new_notebook()
-
-    for message in messages:
-        message = message["content"]
-        new_cell = nbformat.v4.new_code_cell(message)
-        nb_new.cells.append(new_cell)
-
-    html_exporter = HTMLExporter()
-    (html_output_new, _) = html_exporter.from_notebook_node(nb_new)
+    original_notebook = create_notebook(messages)
+    
+    ## Create HTML
+    original_HTML = retrieve_html(original_notebook)
 
     with col1:
         st.header("Original notebook :camera:")
-        st_html(html_output_new, height=800, scrolling=True)
+        st_html(original_HTML, height=800, scrolling=True)
 
     ## Query call to GPT-3.5
-    GPT_return = query_message_list(messages)
+    documented_messages = query_message_list(messages)
     
-    ## Instantiate new notebook
-    nb = nbformat.v4.new_notebook()
-    
-    ## Add messages from GPT query to new notebook
-    for message in GPT_return:
-        new_cell = nbformat.v4.new_code_cell(message)
-        nb.cells.append(new_cell)
+    ## Create new notebook & fill
+    documented_notebook = create_notebook(documented_messages)
 
-    html_exporter = HTMLExporter()
-    (html_output, _) = html_exporter.from_notebook_node(nb)
-
-    ## 
-    nb_true_quotes = json.dumps(nb, indent = 4) 
-    nb_encoded = str(nb_true_quotes).encode('utf-8')
-
+    ## Retreive new HMTL
+    documented_HTML = retrieve_html(documented_notebook)
 
     with col2:
         st.header("Updated notebook :camera:")
-        st_html(html_output, height=800, scrolling=True)
+        st_html(documented_HTML, height=800, scrolling=True)
+    
+    ## Save new notebook for downloading
+    downloaded_notebook = save_notebook_st(documented_notebook)
 
     ## Creating download button with the updated notebook
-    st.sidebar.download_button("Download documented notebook", nb_encoded, "documented_notebook.ipynb", "application/x-ipynb+json")
+    st.sidebar.download_button("Download documented notebook", downloaded_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
 
 
 if my_upload:
     generate_new_notebook(my_upload)
 else:
     st.write("Please upload a Jupyter Notebook to view.")
-
-st.write("Hello Kaan, nice that we are working on this together :) ")
-st.write("Hello Dave, also appreciate working with you :D")
