@@ -24,7 +24,11 @@ col1, col2 = st.columns(2)
 ## Function to define 
 
 def generate_new_notebook(upload):
+    """
+     This function turns an uploaded notebook into a dictionary, creates an HTML window, queries GPT-3.5, creates a new notebook, 
+     and saves it for downloading. The original and updated notebooks are displayed with a download button. 
 
+    """
     ## Turning upload into dictionary
     original_notebook = read_notebook_st(upload)
 
