@@ -1,5 +1,5 @@
 openai==0.27.4
-nbconvert==6.5.4 
+nbconvert==6.5.4
 nbformat==5.7.0
 streamlit==1.21.0
 tqdm==4.65.0
