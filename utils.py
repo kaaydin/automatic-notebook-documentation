@@ -1,10 +1,9 @@
+## Importing relevant modules
 import nbformat
 from nbconvert import HTMLExporter
-
 import json
 
 
-## Read existing notebook
 def read_notebook(notebook_path):
     """
     This function reads a Jupyter notebook file and returns its contents in nbformat. The file path is passed as an argument.
@@ -13,8 +12,7 @@ def read_notebook(notebook_path):
     """
     with open(notebook_path) as f:
         return nbformat.read(f, as_version=4)
-
-## 
+ 
 def read_notebook_st(upload):
     """
     This function reads a Jupyter notebook uploaded as a file and returns a notebook object. 
@@ -30,7 +28,6 @@ def read_notebook_st(upload):
 
     return notebook
     
-## Instantiate new notebook
 def create_notebook(messages):
     """
     This function creates a new Jupyter notebook with code cells containing messages passed as input.
@@ -43,7 +40,6 @@ def create_notebook(messages):
     
     return nb
 
-## Save new notebook
 def save_notebook(notebook, notebook_path):
     """
     This function saves a Jupyter notebook to a specified path. The notebook and path are passed as arguments.
@@ -53,7 +49,6 @@ def save_notebook(notebook, notebook_path):
     with open(notebook_path, 'w') as f:
         nbformat.write(notebook, f)
 
-## Save new notebook in Streamlit
 def save_notebook_st(notebook):
     """
     This function takes a Jupyter notebook as input and saves it as an encoded string using JSON. 
@@ -65,7 +60,6 @@ def save_notebook_st(notebook):
 
     return nb_encoded
 
-## 
 def retrieve_html(notebook):
     """
     This function retrieves the HTML output of a Jupyter notebook cell. It uses the HTMLExporter class to convert the cell 
@@ -76,7 +70,6 @@ def retrieve_html(notebook):
 
     return html_output
 
-## Put input cells in list
 def create_messagelist(notebook):
     """
     This function creates a list of messages from the source code of each cell in a given notebook.
@@ -94,7 +87,6 @@ def create_messagelist(notebook):
 
     return messages
 
-## 
 def correct_spacing(code_list):
     """"
     # This function corrects the spacing in a given code list by replacing empty strings with newline characters. 
