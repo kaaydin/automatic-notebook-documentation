@@ -5,6 +5,7 @@ from streamlit.components.v1 import html as st_html
 from utils import read_notebook_st, create_notebook, create_messagelist, retrieve_html, save_notebook_st
 from comment_generator import query_message_list
 
+
 ## Setting website configurations
 st.set_page_config(layout="wide", page_title="Automatic Documentation for Jupyter Notebooks")
 
@@ -21,7 +22,6 @@ my_upload = st.sidebar.file_uploader("Upload a notebook", type=["ipynb"])
 ## Setting to columns (left: old notebook; right: new notebook)
 col1, col2 = st.columns(2)
 
-## Function to define 
 
 def generate_new_notebook(upload):
     """
@@ -40,7 +40,6 @@ def generate_new_notebook(upload):
         st.header("Original notebook :notebook:")
         st_html(original_HTML, height=800, scrolling=True)
 
-    
     ## Reading dictionary and creating message list
     original_messages = create_messagelist(original_notebook)
     
@@ -64,6 +63,7 @@ def generate_new_notebook(upload):
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", downloaded_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
 
+    
 ## Running application on Streamlit
 if my_upload:
     generate_new_notebook(my_upload)
