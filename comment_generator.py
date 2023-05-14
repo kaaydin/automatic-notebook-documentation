@@ -1,10 +1,14 @@
+## Importing relevant modules
 import openai
 
-API_KEY = ""
+## Setting API_KEY access - downloaded from: https://platform.openai.com/account/api-keys
+API_KEY = "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"
 openai.api_key = API_KEY
 
+## Selecting GPT-3.5 model to generate documentation
 MODEL = "gpt-3.5-turbo"
 
+## Setting instruction / prompt for GPT-3.5 to generate documentation
 INSTRUCTION = {"role": "system", "content": """"
         You are a helpful coding assistant that will take as input a cell from a Jupyter notebook and generate 
         an appropriate comment for the cell at the beginning. Some further instructions to keep in mind: Please keep the 
@@ -17,6 +21,8 @@ def run_api(message, chosen_model=MODEL, instruction=INSTRUCTION):
   otherwise a default model is used. The output is the generated text from the model with a temperature of 0. The code creates 
   an instance of the ChatCompletion class and returns the content of the first message in the first choice of the output. 
   """
+  
+  ## Retrieving output from GPT based on selected model, messages, and temperature
   output = openai.ChatCompletion.create(
     model = chosen_model,
     messages=[instruction,
@@ -24,6 +30,7 @@ def run_api(message, chosen_model=MODEL, instruction=INSTRUCTION):
     temperature = 0,
   )
   
+  ## Retrieving output text from GPT output
   output_text = output.choices[0]["message"]["content"]
   return output_text
 
@@ -35,7 +42,8 @@ def query_message_list(messages):
   """
     
   documented_messages = []
-
+        
+  ## Iterating over all code blocks and running API call to generate output via GPT
   for message in messages:
     queried_message = {"role": "user", "content": f'{message}'}
     documented_message = run_api(chosen_model = MODEL, instruction = INSTRUCTION, message = queried_message)
