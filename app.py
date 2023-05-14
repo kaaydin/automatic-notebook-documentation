@@ -1,4 +1,4 @@
-## Importing all relevant functions
+## Importing all relevant modules
 import streamlit as st
 from streamlit.components.v1 import html as st_html
 
