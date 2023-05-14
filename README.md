@@ -16,10 +16,10 @@ Using the online version, the user selects a local .ipynb file and uplaods it to
 ## Input preparation
 Our tool works best with code chunks that do not contain any documentation or comments in them. For this reason, preparing any input and cleaning them of these elements is highly recommended. 
 
-# Example case
+### Example case
 We have added a sample jupyter notebook that can be used as an input in the GitHub repository and the Zip-submission file. It is called "testbook.ipynb"
 
-# Documentation
+## Final remarks
 
 Since this project was about buildinga tool that automatically writes code documentation, we used our own tool to write most of our documentation, with some small human adjustments. All of the Docstrings for the functions were generated using our tool on our own code. 
 
