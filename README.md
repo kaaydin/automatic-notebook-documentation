@@ -16,8 +16,8 @@ Using the online version, the user selects a local .ipynb file and uplaods it to
 ## Input preparation
 Our tool works best with code chunks that do not contain any documentation or comments in them. For this reason, preparing any input and cleaning them of these elements is highly recommended. 
 
-### Example case
-We have added a sample jupyter notebook that can be used as an input in the GitHub repository and the Zip-submission file. It is called "testbook.ipynb"
+## Notebook for testing
+We have added a sample jupyter notebook that can be used as an input in the GitHub repository and the Zip-submission file. It is called ["testbook.ipynb"] (https://github.com/kaaydin/automatic-notebook-documentation/blob/main/testbook.ipynb)
 
 ## Final remarks
 
