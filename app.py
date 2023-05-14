@@ -35,9 +35,9 @@ def generate_new_notebook(upload):
     ## Create HTML
     original_HTML = retrieve_html(original_notebook)
 
-    ## 
+    ## Display uploaded notebook (in HMTL)
     with col1:
-        st.header("Original notebook :camera:")
+        st.header("Original notebook :notebook:")
         st_html(original_HTML, height=800, scrolling=True)
 
     
@@ -53,9 +53,9 @@ def generate_new_notebook(upload):
     ## Retreive new HMTL
     documented_HTML = retrieve_html(documented_notebook)
 
-    ## 
+    ## Display new notebook (in HMTL)
     with col2:
-        st.header("Updated notebook :camera:")
+        st.header("Updated notebook :notebook:")
         st_html(documented_HTML, height=800, scrolling=True)
     
     ## Save new notebook for downloading
@@ -64,7 +64,7 @@ def generate_new_notebook(upload):
     ## Creating download button with the updated notebook
     st.sidebar.download_button("Download documented notebook", downloaded_notebook, "documented_notebook.ipynb", "application/x-ipynb+json")
 
-
+## Running application on Streamlit
 if my_upload:
     generate_new_notebook(my_upload)
 else:
