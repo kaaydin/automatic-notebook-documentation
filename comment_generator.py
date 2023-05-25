@@ -1,5 +1,5 @@
 ## Importing relevant modules
-import openai
+import openai 
 
 
 ## Setting API_KEY access - downloaded from: https://platform.openai.com/account/api-keys
