@@ -3,7 +3,7 @@ import openai
 
 
 ## Setting API_KEY access - downloaded from: https://platform.openai.com/account/api-keys
-API_KEY = "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"
+API_KEY = ""
 openai.api_key = API_KEY
 
 ## Selecting GPT-3.5 model to generate documentation
